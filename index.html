@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        padding-top:60px;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    nav{
+        border-bottom: 1px solid lightgray;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 60px;
+        height: 70px;
+        width: 100%;
+        position: fixed;
+        background-color: white;
+        top:0;
+        z-index: 1;
+    }
+    .logo{
+        color: green;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .input-section{
+        /* border: 1px solid green; */
+        width: 40%;
+    }
+    .input-section input{
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        padding: 14px;
+    }
+    .items{
+        display: flex;
+        width: 20%;
+        justify-content: space-between;
+    }
+    .items li{
+        list-style: none;
+    }
+    .items li:hover{
+        cursor: pointer;
+    }
+    .hero{
+        height: 50vh;
+        background: linear-gradient(to right, #d8f3dc, #b7e4c7);
+        border-radius: 20px;
+        margin: 0 60px;
+        padding: 50px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .hero h1{
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    .hero p{
+        font-size: 18px;
+        color: rgb(70, 68, 68);
+        margin-bottom: 20px;
+    }
+    .hero button{
+        background-color: green;
+        color: white;
+        padding: 13px 30px;
+        border: none;
+        border-radius: 10px;
+        transition: background-color 1s ease-in-out 1s;
+    }
+    .hero button:hover{
+        cursor: pointer;
+        background-color: rgb(255, 0, 212);
+        
+    }
+    .cart{
+        font-size: 200px;
+    }
+    .cart img{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+    .shopcategory{
+        padding: 0 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        position: sticky;
+        top: 50px;
+        z-index: 100;
+        background-color: white;
+    }
+    .cont{
+        display: flex;
+        gap: 30px;
+        text-align: center;
+    }
+    .box{
+        height: 80px;
+        width: 80px;
+        background-color: rgb(199, 223, 215);
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+    }
+    main{
+        padding-top: 70px;
+    }
+    
+    .item-card{
+        border: 1px solid lightgrey;
+        height: 280px;
+        width: 280px;
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .item-img{
+        background-color: rgb(215, 215, 215);
+        font-size: 70px;
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        position: relative;
+    }
+    .item-card p{
+        font-size: 20px;
+    }
+    .item-name{
+        font-weight:600;
+    }
+    .item-price{
+        color: green;
+        font-weight: 600;
+    }
+    .product-item-container{
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        row-gap: 30px;
+    }
+    .products-container{
+        padding: 60px;
+    }
+    .products-container h1{
+        margin-bottom: 20px;
+    }
+    footer{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    color: white;
+    }
+    .label{
+        background-color: red;
+        border: 1px solid green;
+        font-size: 18px;
+        color: white;
+        padding: 3px 5px;
+        border-radius: 5px;
+        border: none;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+    @media(max-width: 600px){
+            nav{
+                display:grid;
+                height:auto;
+                grid-template-areas: "logo navItem"
+                                     "input input";
+                padding:10px;
+                row-gap:20px;
+            }
+            .logo{
+                grid-area:logo;
+            }
+            .input-section{
+                grid-area:input;
+                width:100%;
+            }
+            .items{
+                grid-area:navItem;
+               
+                width:100%;
+                gap:10px;
+            }
+            .hero{
+                margin: 0 12px;
+                padding: 20px 15px;
+                height: auto;
+                min-height: 260px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                border-radius: 15px;
+            }
+            .hero-content{
+                flex: 1;
+                min-width: 0;
+            }
+            .hero h1{
+                font-size: 27px;
+                line-height: 1.2;
+                margin-bottom: 12px;
+                overflow-wrap: break-word;
+            }
+            .hero p{
+                font-size: 12px;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+            .hero button{
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+            .cart{
+                flex-shrink: 0;
+                font-size: 65px;
+                line-height: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 75px;
+            }
+            .shopcategory{
+                padding: 0 12px;
+                gap: 20px;
+                position: static;
+            }
+            .shopcategory h2{
+                font-size: 20px;
+            }
+            .cont{
+                gap: 12px;
+                justify-content: space-between;
+                overflow-x: auto;
+            }
+            .box{
+                width: 60px;
+                height: 60px;
+                font-size: 25px;
+                flex-shrink: 0;
+            }
+            .box p{
+                font-size: 38px !important;
+            }
+            .cont span{
+                font-size: 12px;
+            }
+            .products-container{
+                padding: 20px 12px;
+            }
+            .product-item-container{
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+            .item-card{
+                width: 100%;
+                height: 220px;
+                min-width: 0;
+            }
+            .item-img{
+                height: 65%;
+                font-size: 50px;
+            }
+            .item-card p{
+                
+            }
+        }
+</style>
+<body>
+    <nav>
+        <div class="logo">FreshMart</div>
+        <div class="input-section">
+        <input type="text" placeholder="Search fruits,vegetables...">
+        </div>
+        <div class="items">
+            <li>Home</li>
+            <li>Products</li>
+            <li>Cart</li>
+        </div>
+    </nav>
+    <main>
+        <div class="hero">
+            <div class="hero-content">
+            <h1>Fresh groceries<br>delivered to you.</h1>
+            <p>Fruits, vegetables and daily essentials delivered fresh.</p>
+            <button>Shop Now</button>
+            </div>
+            <div class="cart">
+                🛒
+            </div>
+        </div>
+        <br>
+        <div class="shopcategory">
+            <h2>Shop by Category</h2>
+            <div class="cont">
+                <div>
+                    <div class="box one"><p style="font-size: 50px;">🍎</p></div>
+                    <span><b>Fruits</b></span>
+                </div>
+                <div>
+                    <div class="box two"><p style="font-size: 50px;">🥦</p></div>
+                    <span><b>Vegetables</b></span>
+                </div>
+                <div>
+                    <div class="box three"><p style="font-size: 50px;">🥛</p></div>
+                    <span><b>Dairy</b></span>
+                </div>
+                <div>
+                    <div class="box four"><p style="font-size: 50px;">🍞</p></div>
+                    <span><b>Bakery</b></span>
+                </div>
+                <div>
+                    <div class="box five"><p style="font-size: 50px;">🍺</p></div>
+                    <span><b>Drinks</b></span>
+                </div>
+        </div>
+        </div>
+        <div class="dummy"></div>
+        <div class="products-container">
+        <h1>Popular Products</h1>
+        <div class="product-item-container">
+            <div class="item-card">
+                <div class="item-img">
+                    🍎
+                    <div class="label">New</div>
+                </div>
+                <p class="item-name">Kashmiri Seb</p>
+                <p class="item-price">₹120/kg</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🥦
+                </div>
+                <p class="item-name">Broken Broccoli</p>
+                <p class="item-price">₹80/kg</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🥛
+                </div>
+                <p class="item-name">Doodh ya Pani?</p>
+                <p class="item-price">₹60/litre</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🍞
+                </div>
+                <p class="item-name">Bhuri Roti</p>
+                <p class="item-price">₹45/pack</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🍊
+                </div>
+                <p class="item-name">Taze Santree</p>
+                <p class="item-price">₹90/kg</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🍌
+                </div>
+                <p class="item-name">Kela Akela</p>
+                <p class="item-price">₹50/dozen</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🍅
+                </div>
+                <p class="item-name">Aha, Tamatar!</p>
+                <p class="item-price">₹40/kg</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🧴
+                </div>
+                <p class="item-name">Chikna Tel</p>
+                <p class="item-price">₹140/litre</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                    🥤 
+                </div>
+                <p class="item-name">Jhag ala Pani</p>
+                <p class="item-price">₹40/can</p>
+            </div>
+            <div class="item-card">
+                <div class="item-img">
+                🧃
+                </div>
+                <p class="item-name">Rass</p>
+                <p class="item-price">₹70/bottle</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>FreshMart © 2026 | CSS Position Practice</p>
+    </footer>
+</body>
+</html>
